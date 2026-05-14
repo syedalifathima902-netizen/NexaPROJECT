@@ -7,9 +7,6 @@ app.secret_key = "nexahire_pro_99_key"
 app.config['UPLOAD_FOLDER'] = "uploads"
 
 # Upload folder check
-if not os.path.exists(app.config['UPLOAD_FOLDER']):
-    os.makedirs(app.config['UPLOAD_FOLDER'])
-
 # --- ATS LOGIC (Pro Analysis) ---
 def analyze_resume(text):
     categories = {
