@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexaHire ATS | Smart Resume Screening</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root { --navy: #0a1f44; --accent: #ff4757; --light-bg: #f9fafb; }
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; background-color: #ffffff; }
+        
+        /* Professional Navbar Styling */
+        .navbar {
+            background-color: var(--navy) !important;
+            padding: 15px 0;
+            border-bottom: 3px solid var(--accent);
+        }
+        .navbar-brand { font-size: 1.8rem; letter-spacing: 1px; }
+        .nav-link { font-weight: 600; color: white !important; transition: 0.3s; }
+        .nav-link:hover { color: var(--accent) !important; }
+
+        /* User Profile Dropdown Style */
+        .user-dropdown-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white !important;
+            border-radius: 50px;
+            padding: 8px 20px;
+            font-weight: 700;
+        }
+        .dropdown-menu { border-radius: 15px; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+
+        /* Hero Section */
+        .hero { 
+            background: linear-gradient(135deg, #0a1f44 0%, #1e3c72 100%); 
+            color: white; 
+            padding: 120px 0 80px; 
+            text-align: center; 
+        }
+        .hero h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; }
+        .hero p { font-size: 1.2rem; opacity: 0.9; margin-bottom: 40px; }
+
+        /* Animated Shake Button */
+        .shake-btn { 
+            background: var(--accent); 
+            color: white; 
+            border-radius: 50px; 
+            padding: 18px 45px; 
+            font-size: 1.2rem;
+            font-weight: 800; 
+            text-decoration: none; 
+            display: inline-block;
+            transition: 0.3s;
+            box-shadow: 0 0 20px rgba(255, 71, 87, 0.6);
+            animation: shake 2s infinite;
+        }
+        .shake-btn:hover { background: #e84118; color: white; transform: translateY(-3px); }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+            100% { transform: translateX(0); }
+        }
+
+        /* Feature Cards */
+        .feature-card { 
+            padding: 30px; 
+            border-radius: 15px; 
+            background: #fff; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            height: 100%;
+            border: 1px solid #f0f0f0;
+        }
+        .feature-card:hover { transform: translateY(-10px); border-bottom: 4px solid var(--accent); }
+
+        section { padding: 100px 0; }
+        .target-offset { padding-top: 120px; margin-top: -120px; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="/">
+            NEXA<span style="color: var(--accent);">HIRE</span> ATS
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item"><a class="nav-link px-3" href="#home">HOME</a></li>
+                <li class="nav-item"><a class="nav-link px-3" href="#about">ABOUT</a></li>
+                <li class="nav-item"><a class="nav-link px-3" href="#features">FEATURES</a></li>
+                
+                {% if session.get('user') %}
+                    <li class="nav-item dropdown ms-lg-3">
+                        <a class="nav-link dropdown-toggle user-dropdown-btn shadow-sm" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                           👤 {{ session['user'] | upper }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end mt-2">
+                            <li><a class="dropdown-item py-2 fw-semibold" href="#">📊 Dashboard</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item py-2 fw-semibold text-danger" href="/logout">🚪 Logout</a></li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li class="nav-item ms-lg-3">
+    <a href="/login" class="btn btn-outline-light px-4 fw-bold shadow me-2">
+        LOGIN
+    </a>
+
+    <a href="/signup" class="btn px-4 fw-bold shadow"
+       style="background-color:#ff4757; color:white;">
+        SIGN UP
+    </a>
+</li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<header id="home" class="hero">
+    <div class="container">
+        <h1 class="display-3 fw-bold">NexaATS Hire</h1>
+        <p class="lead mb-5 opacity-75">Next Generation AI for Helping Intelligent Resume Evaluation.</p>
+        
+        <div class="mt-4">
+            <a href="#upload-step" class="shake-btn">
+                GET FREE AI RESUME SCORE 🚀
+            </a>
+        </div>
+    </div>
+</header>
+
+<section id="about" class="target-offset">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-4" style="color: var(--navy);">About Nexahire ATS</h2>
+        <div class="mx-auto shadow-sm p-4 border-start border-danger border-5" style="max-width: 800px; background: #f8f9fa;">
+            <p class="lead text-muted">
+                NexaATS Hire is an AI-powered resume screening system that evaluates your resume with smart analysis. 
+                It helps you understand your strengths and improve your chances of getting hired faster by giving you an 
+                instant ATS score based on data-driven career insights.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section id="features" class="target-offset" style="background-color: #f8f9fa;">
+    <div class="container">
+        <h2 class="text-center fw-bold mb-5" style="color: var(--navy); font-size: 2.5rem;">Why You Should Use Our Resume Checker</h2>
+        
+        <div class="row g-4 text-center">
+    <div class="col-md-3">
+        <div class="feature-card">
+            <h3>📄</h3>
+            <h5 class="fw-bold">Optimal Length</h5>
+            <p class="small text-muted">Ensuring your resume fits the ideal one-page professional standard.</p>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="feature-card">
+            <h3>✍️</h3>
+            <h5 class="fw-bold">Fix Typos</h5>
+            <p class="small text-muted">Catching spelling and grammar mistakes instantly.</p>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="feature-card">
+            <h3>📊</h3>
+            <h5 class="fw-bold">Measurable Results</h5>
+            <p class="small text-muted">Highlighting achievements with real impact numbers.</p>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="feature-card">
+            <h3>🚀</h3>
+            <h5 class="fw-bold">Word Choice</h5>
+            <p class="small text-muted">Suggesting powerful action verbs to stand out.</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="feature-card">
+            <h3>🎨</h3>
+            <h5 class="fw-bold">Formatting</h5>
+            <p class="small text-muted">Checking if your layout is clean and fully optimized for ATS scanners.</p>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="feature-card">
+            <h3>💡</h3>
+            <h5 class="fw-bold">Strong Summary</h5>
+            <p class="small text-muted">Expert tips to craft a compelling introduction that hiring managers love.</p>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="feature-card">
+            <h3>🎯</h3>
+            <h5 class="fw-bold">Customization</h5>
+            <p class="small text-muted">Enriching your resume with the right keywords based on your target job.</p>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="feature-card">
+            <h3>📞</h3>
+            <h5 class="fw-bold">Contact Info</h5>
+            <p class="small text-muted">Ensuring your contact details are complete and easy for recruiters to spot.</p>
+        </div>
+    </div>
+</div>
+    </div>
+</section>
+<section id="how-it-works" class="py-5" style="background-color: #ffffff;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold" style="color: var(--navy); font-size: 2.5rem;">How Our Resume Checker Works</h2>
+            <p class="text-muted">Four simple steps to take your resume to the next level.</p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-3">
+                <div class="step-card text-center p-4">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">📤</div>
+                    <h5 class="fw-bold mt-3">Upload Resume</h5>
+                    <p class="small text-muted">Upload your PDF resume or create a new one in our dashboard.</p>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="step-card text-center p-4">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">📊</div>
+                    <h5 class="fw-bold mt-3">Get Your Score</h5>
+                    <p class="small text-muted">Review your free report and follow AI-driven tips to polish it.</p>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="step-card text-center p-4">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">🛠️</div>
+                    <h5 class="fw-bold mt-3">Analyze Feedback</h5>
+                    <p class="small text-muted">Analyze feedback to improve performance and user satisfaction.</p>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="step-card text-center p-4">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">📥</div>
+                    <h5 class="fw-bold mt-3">Download & Send</h5>
+                    <p class="small text-muted">Download your flawless resume and send it to your dream job.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-5">
+            <a href="#upload-step" class="btn btn-pro-action">OPTIMIZE YOUR RESUME NOW</a>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Step Card Styling */
+    .step-card {
+        background: #fff;
+        border-radius: 20px;
+        border: 2px solid #f0f0f0;
+        position: relative;
+        transition: all 0.4s ease;
+        height: 100%;
+    }
+
+    .step-card:hover {
+        border-color: var(--accent);
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(10, 31, 68, 0.1);
+    }
+
+    .step-number {
+        position: absolute;
+        top: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--navy);
+        color: white;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        border: 3px solid #fff;
+    }
+
+    .step-icon {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+    }
+
+    /* Pro Action Button */
+    .btn-pro-action {
+        background-color: var(--navy);
+        color: white !important;
+        padding: 15px 40px;
+        border-radius: 50px;
+        font-weight: 800;
+        text-decoration: none;
+        transition: 0.3s;
+        display: inline-block;
+        border: 2px solid var(--navy);
+    }
+
+    .btn-pro-action:hover {
+        background-color: var(--accent);
+        border-color: var(--accent);
+        box-shadow: 0 10px 20px rgba(255, 71, 87, 0.3);
+    }
+</style>
+<section id="upload-step" style="background-color: #f8f9fa; padding: 60px 0;">
+    <div class="container">
+        <div class="mx-auto" style="max-width: 850px; background: #ffffff; border: 2px dashed #0a1f44; border-radius: 20px; padding: 40px;">
+            <div class="text-center">
+                <h4 class="fw-bold mb-4" style="color: #0a1f44; background: #eef2ff; display: inline-block; padding: 5px 20px; border-radius: 5px;">
+                    Get Instant Resume Feedback
+                </h4>
+                <div class="my-4">
+                    <form action="/upload" method="POST" enctype="multipart/form-data">
+                        <input type="file" name="resume" id="instantFileInput" hidden accept=".pdf" onchange="this.form.submit()">
+                        <button type="button" onclick="document.getElementById('instantFileInput').click()" class="btn btn-warning fw-extrabold px-5 py-3 shadow" style="background-color: #ffb84d; border: none; color: #0a1f44; font-size: 1.4rem; font-weight: 800; border-radius: 10px; width: 100%; max-width: 500px;">
+                            SCAN YOUR RESUME NOW
+                        </button>
+                    </form>
+                </div>
+                <p class="text-muted mt-3">Stop wondering why you aren't getting interviews. Get your instant ATS score now.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="py-5 text-center" style="background: var(--navy); color: white; border-top: 5px solid var(--accent);">
+    <div class="container">
+        <p>Email: <b>support@nexahire.com</b> | Phone: <b>9344632557</b></p>
+        <div class="opacity-50 small mt-3">© 2026 NexaHire ATS. All Rights Reserved.</div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

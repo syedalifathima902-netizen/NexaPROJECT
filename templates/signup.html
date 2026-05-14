@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | NexaHire ATS</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root { --navy: #0a1f44; --red: #ff4757; }
+
+        body {
+            background: linear-gradient(135deg, #0a1f44, #1e3c72);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .signup-card {
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.4);
+            width: 100%;
+            max-width: 550px;
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .signup-card h2 {
+            color: var(--navy);
+            font-weight: 800;
+            text-align: center;
+        }
+
+        .form-label {
+            font-weight: 700;
+            color: var(--navy);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .form-control {
+            border-radius: 12px;
+            padding: 14px;
+            border: 2px solid #eee;
+            margin-bottom: 15px;
+        }
+
+        .form-control:focus {
+            border-color: var(--red);
+            box-shadow: none;
+        }
+
+        .btn-signup {
+            background: var(--red);
+            color: white;
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            font-weight: 800;
+            border: none;
+            transition: 0.3s;
+        }
+
+        .btn-signup:hover {
+            background: #e84118;
+            transform: translateY(-2px);
+        }
+
+        .footer-text {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .footer-text a {
+            color: var(--red);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .brand-logo {
+            text-align: center;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-decoration: none;
+            display: block;
+            color: var(--navy);
+        }
+
+        .brand-logo span {
+            color: var(--red);
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="signup-card">
+
+    <a href="/" class="brand-logo">NEXA<span>HIRE</span> ATS</a>
+
+    <h2>Create Account</h2>
+    <p class="text-center text-muted mb-4">Start your AI resume journey 🚀</p>
+
+    <form action="/signup" method="POST">
+
+        <label class="form-label">Full Name</label>
+        <input type="text" name="fullname" class="form-control" required>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label class="form-label">Email</label>
+                <input type="email" name="email" class="form-control" required>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Phone</label>
+                <input type="text" name="phone" class="form-control" required>
+            </div>
+        </div>
+
+        <label class="form-label">Username</label>
+        <input type="text" name="username" class="form-control" required>
+
+        <label class="form-label">Password</label>
+        <input type="password" name="password" class="form-control" required>
+
+        <button type="submit" class="btn-signup">SIGN UP 🚀</button>
+
+    </form>
+
+    <div class="footer-text">
+        Already have an account? <a href="/login">Login</a>
+    </div>
+
+</div>
+
+</body>
+</html>

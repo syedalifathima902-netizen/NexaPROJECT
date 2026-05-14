@@ -1,0 +1,86 @@
+/* Unique Button Design */
+.shake-btn { 
+    background: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%); /* Blue-Purple Gradient */
+    color: white !important; 
+    border-radius: 50px; 
+    padding: 15px 40px; 
+    font-weight: bold; 
+    animation: shake 2s infinite; 
+    text-decoration: none; 
+    display: inline-block;
+    border: none;
+    box-shadow: 0 4px 15px rgba(37, 117, 252, 0.4);
+    transition: 0.3s;
+}
+
+.shake-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(106, 17, 203, 0.5);
+}
+
+/* Shake Animation */
+@keyframes shake {
+    0%, 100% { transform: rotate(0deg); }
+    10%, 30%, 50% { transform: rotate(-2deg); }
+    20%, 40%, 60% { transform: rotate(2deg); }
+}
+/* Tagline Font Size Adjustment */
+.tagline-text {
+    font-size: 1.5rem !important; /* Ungalukku innum chinna size venumna 1.2rem nu mathunga */
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8); /* Light white color for professional look */
+    letter-spacing: 0.5px;
+    margin-top: 10px;
+}
+.hero {
+    background: linear-gradient(rgba(10, 31, 68, 0.8), rgba(10, 31, 68, 0.8)), 
+                url('/static/images/imageq1.png'); /* Unga image name inga podunga */
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+html {
+    scroll-behavior: smooth;
+}
+/* LOGO SECTION */
+.logo-section {
+    background: #f8f9fa;
+    padding: 50px 0;
+    overflow: hidden;
+}
+
+.logo-title {
+    font-weight: 700;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* SLIDER */
+.logo-slider {
+    overflow: hidden;
+    position: relative;
+}
+
+.logo-track {
+    display: flex;
+    width: calc(250px * 12);
+    animation: scroll 20s linear infinite;
+}
+
+.logo-track img {
+    width: 120px;
+    margin: 0 30px;
+    filter: grayscale(100%);
+    transition: 0.3s;
+}
+
+.logo-track img:hover {
+    filter: grayscale(0%);
+    transform: scale(1.1);
+}
+
+/* ANIMATION */
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
