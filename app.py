@@ -4,7 +4,7 @@ import PyPDF2
 
 app = Flask(__name__)
 app.secret_key = "nexahire_pro_99_key"
-app.config['UPLOAD_FOLDER'] = "uploads"
+app.config['UPLOAD_FOLDER'] = "/tmp"
 
 # Upload folder check
 # --- ATS LOGIC (Pro Analysis) ---
