@@ -118,6 +118,3 @@ def download():
     if path and os.path.exists(path):
         return send_file(path, as_attachment=True, download_name="NexaHire_Analysis_Report.pdf")
     return "Error: File not found!", 404
-
-if __name__ == '__main__':
-    app.run(debug=True)
